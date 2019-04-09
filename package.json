@@ -1,0 +1,12 @@
+{
+  "name": "heechain-doc",
+  "version": "1.0.0",
+  "description": "> heechain doc",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "docsify serve docs --port 8000"
+  },
+  "author": "zyy"
+}
