@@ -1,5 +1,5 @@
 - [文档说明](README.md)
-- [场景介绍](scenarios.md)
+- [参数规定](scenarios.md)
 - [API列表](api.md)
 - [错误码](Error-code.md)
 - [DEMO下载](demo.md)
