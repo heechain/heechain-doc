@@ -4,11 +4,11 @@
 
 区块存证接口，为合同管理提供非中心化的数据存储与读取，保证数据的绝对安全，不可抵赖。
 
-> 请求URL:`https://openapi.heemoney.com/v1/evidence/create`
+> 请求URL:``
 
 > 请求方式:`POST`   
 
-> 是否需要证书：`是`
+> 是否需要证书：`否`
 
 > method：`heechain.evidence.create`
 
@@ -102,14 +102,6 @@
 	<th>示例值</th>
 </tr>
 <tr>
-    <td>address</td>
-    <td>String</td>
-	<td>是</td>
-	<td>64</td>
-	<td>存证地址</td>
-	<td>da4yWWszCaBy7pfhoQpu7HTXuaQQ9xS</td>
-</tr>
-<tr>
     <td>out_trade_no</td>
     <td>String</td>
 	<td>是</td>
@@ -190,11 +182,11 @@
 	<th>示例值</th>
 </tr>
 <tr>
-    <td>tx_id</td>
+    <td>hash</td>
     <td>String</td>
 	<td>是</td>
 	<td>64</td>
-	<td>交易id</td>
+	<td>交易hash</td>
 	<td>5649d0e06baa10bb195b5e</td>
 </tr>
 <tr>
@@ -246,11 +238,11 @@
 
 区块存证接口查询，根据外部流水号、合同号、操作类型等关键字，查询区块链上的信息。
 
-> 请求URL:`https://openapi.heemoney.com/v1/evidence/query`
+> 请求URL:``
 
 > 请求方式:`POST`   
 
-> 是否需要证书：`是`
+> 是否需要证书：`否`
 
 > 数据格式：`form表单`
 
@@ -405,11 +397,11 @@
 	<th>示例值</th>
 </tr>
 <tr>
-    <td>tx_id</td>
+    <td>hash</td>
     <td>String</td>
 	<td>是</td>
 	<td>64</td>
-	<td>交易id</td>
+	<td>交易hash</td>
 	<td>5649d0e06baa10bb195b5e</td>
 </tr>
 <tr>
@@ -485,11 +477,11 @@
 
 区块存证接口查询，根据交易ID（存证提交时，返回的txt_id）查询区块链上的信息。
 
-> 请求URL:`https://openapi.heemoney.com/v1/evidence/query`
+> 请求URL:``
 
 > 请求方式:`POST`   
 
-> 是否需要证书：`是`
+> 是否需要证书：`否`
 
 > 数据格式：`form表单`
 
