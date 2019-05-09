@@ -564,11 +564,11 @@
 	<th>示例值</th>
 </tr>
 <tr>
-    <td>tx_id</td>
+    <td>hash</td>
     <td>String</td>
 	<td>是</td>
 	<td>64</td>
-	<td>区块交易ID</td>
+	<td>区块交易hash</td>
 	<td>da4yWWszCaBy7pfhoQpu7HTXuaQQ9xS</td>
 </tr>
 </table>
@@ -612,11 +612,11 @@
 	<th>示例值</th>
 </tr>
 <tr>
-    <td>tx_id</td>
+    <td>hash</td>
     <td>String</td>
 	<td>是</td>
 	<td>64</td>
-	<td>交易id</td>
+	<td>交易hash</td>
 	<td>5649d0e06baa10bb195b5e</td>
 </tr>
 <tr>
