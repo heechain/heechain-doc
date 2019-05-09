@@ -6,7 +6,10 @@
     "doc": "docs"
   },
   "scripts": {
-    "dev": "docsify serve docs --port 8000"
+    "dev": "node_modules/.bin/serve docs -l 8000"
   },
-  "author": "zyy"
+  "author": "zyy",
+  "devDependencies": {
+    "serve": "^11.0.0"
+  }
 }
