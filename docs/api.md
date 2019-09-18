@@ -15,7 +15,7 @@
 - 公共参数
 
 
-<table data-hy-role="doctbl"> 
+<table data-hy-role="doctbl"> git add -A
     <th>参数</th>
     <th>类型</th>
 	<th>是否必填</th>
