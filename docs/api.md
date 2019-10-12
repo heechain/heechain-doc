@@ -4,18 +4,18 @@
 
 区块存证接口，为合同管理提供非中心化的数据存储与读取，保证数据的绝对安全，不可抵赖。
 
-> 请求URL:``
+> 请求URL:`https://api.heemoney.com/heechain/v1/signadd`
 
 > 请求方式:`POST`   
 
-> method：``
+> method：`heechain.sign.add`
 
 > 数据格式：`json串`
 
 - 公共参数
 
 
-<table data-hy-role="doctbl"> git add -A
+<table data-hy-role="doctbl">
     <th>参数</th>
     <th>类型</th>
 	<th>是否必填</th>
@@ -53,7 +53,7 @@
 	<td>是</td>
 	<td>128</td>
 	<td>业务名称</td>
-	<td>heechain.create.evidence</td>
+	<td>heechain.sign.add</td>
 </tr>
 <tr>
     <td>sign_type</td>
@@ -236,9 +236,11 @@
 
 区块存证接口查询，根据外部流水号、合同号、操作类型等关键字，查询区块链上的信息。
 
-> 请求URL:``
+> 请求URL:`https://api.heemoney.com/heechain/v1/signquery`
 
 > 请求方式:`POST`   
+
+> method：`heechain.sign.query`
 
 > 数据格式：`form表单`
 
@@ -251,6 +253,14 @@
 	<th>最大长度</th>
 	<th>描述</th>
 	<th>示例值</th>
+</tr>
+<tr>
+    <td>method</td>
+    <td>String</td>
+	<td>是</td>
+	<td>128</td>
+	<td>业务名称</td>
+	<td>heechain.sign.query</td>
 </tr>
 <tr>
     <td>version</td>
@@ -473,9 +483,11 @@
 
 区块存证接口查询，根据交易ID（存证提交时，返回的txt_id）查询区块链上的信息。
 
-> 请求URL:``
+> 请求URL:`https://api.heemoney.com/heechain/v1/signquerybytxid`
 
-> 请求方式:`POST`   
+> 请求方式:`POST`  
+
+> method：`heechain.sign.query.txid`
 
 > 数据格式：`form表单`
 
@@ -496,6 +508,14 @@
 	<td>10</td>
 	<td>版本号，默认1.0</td>
 	<td>V1.0</td>
+</tr>
+<tr>
+    <td>method</td>
+    <td>String</td>
+	<td>是</td>
+	<td>128</td>
+	<td>业务名称</td>
+	<td>heechain.sign.query.txid</td>
 </tr>
 <tr>
     <td>app_id</td>
