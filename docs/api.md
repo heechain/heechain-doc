@@ -304,7 +304,7 @@
 
 > method：`heechain.sign.query`
 
-> 数据格式：`form表单`
+> 数据格式：`json串`
 
 - 公共参数
 
@@ -599,7 +599,7 @@
 
 > method：`heechain.sign.query.txid`
 
-> 数据格式：`form表单`
+> 数据格式：`json串`
 
 - 公共参数
 
