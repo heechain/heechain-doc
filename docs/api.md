@@ -56,6 +56,14 @@
 	<td>heechain.sign.add</td>
 </tr>
 <tr>
+    <td>charset</td>
+    <td>String</td>
+    <td>否</td>
+    <td>10</td>
+    <td>编码格式默认为UTF-8</td>
+    <td>UTF-8,GBK,GB2312</td>
+</tr>
+<tr>
     <td>sign_type</td>
     <td>String</td>
 	<td>是</td>
@@ -104,32 +112,32 @@
     <td>String</td>
 	<td>是</td>
 	<td>20</td>
-	<td>外部流水号</td>
+	<td>商户订单号</td>
 	<td>T201821521512</td>
 </tr>
 <tr>
-    <td>operate_type</td>
+    <td>data_type</td>
     <td>String</td>
 	<td>是</td>
 	<td>20</td>
-	<td>操作类型</td>
-	<td>123</td>
+	<td>存证类型，自定义参数</td>
+	<td>签约、存证</td>
 </tr>
 <tr>
-    <td>contract_no</td>
+    <td>data_key</td>
     <td>String</td>
 	<td>是</td>
 	<td>50</td>
-	<td>合同编号</td>
-	<td>G2018022812A231</td>
+	<td>存证编号，自定义参数</td>
+	<td>10001</td>
 </tr>
 <tr>
     <td>data</td>
     <td>String</td>
 	<td>是</td>
-	<td>500</td>
-	<td>其他数据,json串查询时原样输出</td>
-	<td>md5</td>
+	<td>-</td>
+	<td>存证内容，合同MD5摘要结果</td>
+	<td>864D4DE15097B3A2D0508A0D5CC724F4</td>
 </tr>
 <tr>
     <td>note</td>
@@ -141,35 +149,97 @@
 </tr>
 </table>
 
-- 响应参数：
+- 公共响应参数
 
-<table data-hy-role="doctbl"> 
+<table data-hy-role="doctbl">
     <th>参数</th>
     <th>类型</th>
-	<th>是否必填</th>
-	<th>最大长度</th>
-	<th>描述</th>
-	<th>示例值</th>
+    <th>是否必填</th>
+    <th>最大长度</th>
+    <th width="220">描述</th>
+    <th width="163">示例值</th>
 </tr>
 <tr>
-    <td>has_error</td>
+    <td>return_code</td>
     <td>String</td>
-	<td>是</td>
-	<td>16</td>
-	<td>返回状态码 true/false</td>
-	<td>false</td>
+    <td>是</td>
+    <td>16</td>
+    <td>返回状态码</td>
+    <td>SUCCESS</td>
 </tr>
 <tr>
-    <td>message</td>
+    <td>return_msg</td>
     <td>String</td>
-	<td>是</td>
-	<td>1000</td>
-	<td>返回状态码描述</td>
-	<td>json串</td>
+    <td>是</td>
+    <td>128</td>
+    <td>返回状态码描述</td>
+    <td>ok</td>
 </tr>
 </table>
 
-- message响应参数：
+
+
+以下字段在return_code为SUCCESS时返回
+
+<table data-hy-role="doctbl">
+    <th>参数</th>
+    <th>类型</th>
+    <th>是否必填</th>
+    <th>最大长度</th>
+    <th width="220">描述</th>
+    <th width="163">示例值</th>
+</tr>
+<tr>
+    <td>result_code</td>
+    <td>String</td>
+    <td>否</td>
+    <td>16</td>
+    <td>业务状态码</td>
+    <td>SUCCESS</td>
+</tr>
+<tr>
+    <td>sign</td>
+    <td>String</td>
+    <td>是</td>
+    <td>32</td>
+    <td>签名结果</td>
+    <td>565656565</td>
+</tr>
+</table>
+
+
+以下字段在return_code为SUCCESS时，result_code为FAIL时返回
+
+<table data-hy-role="doctbl">
+    <th>参数</th>
+    <th>类型</th>
+    <th>是否必填</th>
+    <th>最大长度</th>
+    <th width="220">描述</th>
+    <th width="163">示例值</th>
+</tr>
+<tr>
+    <td>error_code</td>
+    <td>int</td>
+    <td>是</td>
+    <td></td>
+    <td>详见错误列表</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>error_msg</td>
+    <td>String</td>
+    <td>否</td>
+    <td>128</td>
+    <td>结果不明确，不处理单据，状态=Unknow</td>
+    <td>ok</td>
+</tr>
+</table>
+
+- 响应参数
+
+以下字段在return_code为SUCCESS时，result_code为SUCCESS时返回
+
 
 <table data-hy-role="doctbl"> 
     <th>参数</th>
@@ -180,61 +250,53 @@
 	<th>示例值</th>
 </tr>
 <tr>
-    <td>hash</td>
+    <td>hy_bill_no</td>
     <td>String</td>
 	<td>是</td>
 	<td>64</td>
-	<td>交易hash</td>
-	<td>5649d0e06baa10bb195b5e</td>
+	<td>汇元订单号</td>
+	<td>1007</td>
 </tr>
 <tr>
     <td>out_trade_no</td>
     <td>String</td>
 	<td>是</td>
 	<td>128</td>
-	<td>外部流水号</td>
+	<td>商户订单号</td>
 	<td>T201821521512</td>
 </tr>
 <tr>
-    <td>operate_type</td>
+    <td>tx_id</td>
     <td>String</td>
 	<td>是</td>
 	<td>20</td>
-	<td>操作类型</td>
-	<td>123</td>
+	<td>交易hash</td>
+	<td>3944c64372c2c4</td>
 </tr>
 <tr>
-    <td>contract_no</td>
+    <td>address</td>
     <td>String</td>
 	<td>是</td>
 	<td>50</td>
-	<td>合同编号</td>
-	<td>G2018022812A231</td>
+	<td>存证账户地址</td>
+	<td>hy13JuhgwZS</td>
 </tr>
 <tr>
-    <td>status</td>
+    <td>trade_status</td>
     <td>int</td>
 	<td>是</td>
 	<td>1</td>
-	<td>执行状态</td>
-	<td>0=处理中，1=成功，-1=失败</td>
-</tr>
-<tr>
-    <td>data</td>
-    <td>String</td>
-	<td>是</td>
-	<td>500</td>
-	<td>其他数据，json串 原样返回</td>
-	<td>{json串}</td>
+	<td>存证状态，Undeal=未处理，InPack=打包中，PartConfirm=部分确认，Success=已完成，Fail=失败</td>
+	<td>InPack</td>
 </tr>
 </table>
 
 
-## 合同查询接口
+## 存证查询接口
 
 - 简要描述：
 
-区块存证接口查询，根据外部流水号、合同号、操作类型等关键字，查询区块链上的信息。
+区块存证接口查询，根据商户订单号、汇元单号，查询区块链上的信息。
 
 > 请求URL:`https://api.heemoney.com/heechain/v1/signquery`
 
@@ -287,6 +349,14 @@
 	<td>276952</td>
 </tr>
 <tr>
+    <td>charset</td>
+    <td>String</td>
+    <td>否</td>
+    <td>10</td>
+    <td>编码格式默认为UTF-8</td>
+    <td>UTF-8,GBK,GB2312</td>
+</tr>
+<tr>
     <td>sign_type</td>
     <td>String</td>
 	<td>是</td>
@@ -331,68 +401,116 @@
 	<th>示例值</th>
 </tr>
 <tr>
-    <td>evidence_address</td>
-    <td>String</td>
-	<td>是</td>
-	<td>64</td>
-	<td>存证地址</td>
-	<td>da4yWWszCaBy7pfhoQpu7HTXuaQQ9xS</td>
-</tr>
-<tr>
     <td>out_trade_no</td>
     <td>String</td>
-	<td>是</td>
+	<td>否</td>
 	<td>20</td>
-	<td>外部流水号</td>
+	<td>商户订单号</td>
 	<td>T201821521512</td>
 </tr>
 <tr>
-    <td>operate_type</td>
+    <td>hy_bill_no</td>
     <td>String</td>
-	<td>是</td>
-	<td>20</td>
-	<td>操作类型</td>
-	<td>123</td>
-</tr>
-<tr>
-    <td>agreement_no</td>
-    <td>String</td>
-	<td>是</td>
+	<td>否</td>
 	<td>50</td>
-	<td>合同编号</td>
+	<td>汇元订单号</td>
 	<td>G2018022812A231</td>
 </tr>
 </table>
+汇元单号或商户订单号必须提供一个，以汇元单号优先
 
-- 响应参数：
 
-<table data-hy-role="doctbl"> 
+- 公共响应参数
+
+<table data-hy-role="doctbl">
     <th>参数</th>
     <th>类型</th>
-	<th>是否必填</th>
-	<th>最大长度</th>
-	<th>描述</th>
-	<th>示例值</th>
+    <th>是否必填</th>
+    <th>最大长度</th>
+    <th width="220">描述</th>
+    <th width="163">示例值</th>
 </tr>
 <tr>
-    <td>has_error</td>
+    <td>return_code</td>
     <td>String</td>
-	<td>是</td>
-	<td>16</td>
-	<td>返回状态码 true/false</td>
-	<td>false</td>
+    <td>是</td>
+    <td>16</td>
+    <td>返回状态码</td>
+    <td>SUCCESS</td>
 </tr>
 <tr>
-    <td>ret_data</td>
+    <td>return_msg</td>
     <td>String</td>
-	<td>是</td>
-	<td>1000</td>
-	<td>返回数据</td>
-	<td>json串</td>
+    <td>是</td>
+    <td>128</td>
+    <td>返回状态码描述</td>
+    <td>ok</td>
 </tr>
 </table>
 
-- ret_data响应参数：
+
+
+以下字段在return_code为SUCCESS时返回
+
+<table data-hy-role="doctbl">
+    <th>参数</th>
+    <th>类型</th>
+    <th>是否必填</th>
+    <th>最大长度</th>
+    <th width="220">描述</th>
+    <th width="163">示例值</th>
+</tr>
+<tr>
+    <td>result_code</td>
+    <td>String</td>
+    <td>否</td>
+    <td>16</td>
+    <td>业务状态码</td>
+    <td>SUCCESS</td>
+</tr>
+<tr>
+    <td>sign</td>
+    <td>String</td>
+    <td>是</td>
+    <td>32</td>
+    <td>签名结果</td>
+    <td>565656565</td>
+</tr>
+</table>
+
+
+以下字段在return_code为SUCCESS时，result_code为FAIL时返回
+
+<table data-hy-role="doctbl">
+    <th>参数</th>
+    <th>类型</th>
+    <th>是否必填</th>
+    <th>最大长度</th>
+    <th width="220">描述</th>
+    <th width="163">示例值</th>
+</tr>
+<tr>
+    <td>error_code</td>
+    <td>int</td>
+    <td>是</td>
+    <td></td>
+    <td>详见错误列表</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>error_msg</td>
+    <td>String</td>
+    <td>否</td>
+    <td>128</td>
+    <td>结果不明确，不处理单据，状态=Unknow</td>
+    <td>ok</td>
+</tr>
+</table>
+
+- 响应参数
+
+以下字段在return_code为SUCCESS时，result_code为SUCCESS时返回
+
 
 <table data-hy-role="doctbl"> 
     <th>参数</th>
@@ -403,76 +521,68 @@
 	<th>示例值</th>
 </tr>
 <tr>
-    <td>hash</td>
+    <td>hy_bill_no</td>
     <td>String</td>
 	<td>是</td>
-	<td>64</td>
-	<td>交易hash</td>
-	<td>5649d0e06baa10bb195b5e</td>
+	<td>50</td>
+	<td>汇元订单号</td>
+	<td>1004</td>
 </tr>
 <tr>
     <td>out_bill_no</td>
     <td>String</td>
 	<td>是</td>
-	<td>128</td>
-	<td>外部流水号</td>
+	<td>50</td>
+	<td>商户订单号</td>
 	<td>T201821521512</td>
 </tr>
 <tr>
-    <td>agreement_no</td>
+    <td>tx_id</td>
     <td>String</td>
 	<td>是</td>
 	<td>50</td>
-	<td>合同编号</td>
-	<td>G2018022812A231</td>
+	<td>交易hash</td>
+	<td>4e716a....29cf37</td>
 </tr>
 <tr>
-    <td>operate_type</td>
+    <td>data_key</td>
     <td>String</td>
 	<td>是</td>
 	<td>20</td>
-	<td>操作类型</td>
-	<td>0=123</td>
+	<td>存证编号</td>
+	<td>10001</td>
 </tr>
 <tr>
-    <td>evidence_address</td>
+    <td>data_type</td>
     <td>String</td>
 	<td>是</td>
 	<td>64</td>
-	<td>存证地址</td>
-	<td>da4yWWszCaBy7pfhoQpu7HTXuaQQ9xS</td>
-</tr>
-<tr>
-    <td>status</td>
-    <td>int</td>
-	<td>是</td>
-	<td>1</td>
-	<td>执行状态</td>
-	<td>0=处理中，1=成功，-1=失败</td>
-</tr>
-<tr>
-    <td>message</td>
-    <td>String</td>
-	<td>是</td>
-	<td>50</td>
-	<td>描述</td>
-	<td>test</td>
+	<td>存证类型，原样返回</td>
+	<td>签约、存证</td>
 </tr>
 <tr>
     <td>data</td>
-    <td>String</td>
+    <td>int</td>
 	<td>是</td>
-	<td>500</td>
-	<td>其他数据，json串 原样返回</td>
-	<td>0={json串}</td>
+	<td>1</td>
+	<td>存证内容，合同MD5摘要结果</td>
+	<td>864D4DE15097B3A2D0508A0D5CC724F4</td>
 </tr>
 <tr>
-    <td>ctime</td>
+    <td>trade_status</td>
+    <td>String</td>
+	<td>是</td>
+	<td>50</td>
+	<td>存证状态，Undeal=未处理，InPack=打包中，PartConfirm=部分确认，Success=已完成，Fail=失败</td>
+	<td>Success</td>
+</tr>
+<tr>
+    <td>address</td>
     <td>String</td>
 	<td>是</td>
 	<td>500</td>
-	<td>链上操作完成创建时间</td>
-	<td>yyyyMMddHHmmss	</td>
+	<td>存证地址</td>
+	<td>hy1e5EhWc4xqMHRqZCufhZu5MsjYfvBdTtv</td>
 </tr>
 </table>
 
@@ -578,7 +688,7 @@
 	<th>示例值</th>
 </tr>
 <tr>
-    <td>hash</td>
+    <td>tx_id</td>
     <td>String</td>
 	<td>是</td>
 	<td>64</td>
@@ -587,35 +697,97 @@
 </tr>
 </table>
 
-- 响应参数：
+- 公共响应参数
 
-<table data-hy-role="doctbl"> 
+<table data-hy-role="doctbl">
     <th>参数</th>
     <th>类型</th>
-	<th>是否必填</th>
-	<th>最大长度</th>
-	<th>描述</th>
-	<th>示例值</th>
+    <th>是否必填</th>
+    <th>最大长度</th>
+    <th width="220">描述</th>
+    <th width="163">示例值</th>
 </tr>
 <tr>
-    <td>has_error</td>
+    <td>return_code</td>
     <td>String</td>
-	<td>是</td>
-	<td>16</td>
-	<td>返回状态码 true/false</td>
-	<td>false</td>
+    <td>是</td>
+    <td>16</td>
+    <td>返回状态码</td>
+    <td>SUCCESS</td>
 </tr>
 <tr>
-    <td>ret_data</td>
+    <td>return_msg</td>
     <td>String</td>
-	<td>是</td>
-	<td>1000</td>
-	<td>返回数据</td>
-	<td>json串</td>
+    <td>是</td>
+    <td>128</td>
+    <td>返回状态码描述</td>
+    <td>ok</td>
 </tr>
 </table>
 
-- ret_data响应参数：
+
+
+以下字段在return_code为SUCCESS时返回
+
+<table data-hy-role="doctbl">
+    <th>参数</th>
+    <th>类型</th>
+    <th>是否必填</th>
+    <th>最大长度</th>
+    <th width="220">描述</th>
+    <th width="163">示例值</th>
+</tr>
+<tr>
+    <td>result_code</td>
+    <td>String</td>
+    <td>否</td>
+    <td>16</td>
+    <td>业务状态码</td>
+    <td>SUCCESS</td>
+</tr>
+<tr>
+    <td>sign</td>
+    <td>String</td>
+    <td>是</td>
+    <td>32</td>
+    <td>签名结果</td>
+    <td>565656565</td>
+</tr>
+</table>
+
+
+以下字段在return_code为SUCCESS时，result_code为FAIL时返回
+
+<table data-hy-role="doctbl">
+    <th>参数</th>
+    <th>类型</th>
+    <th>是否必填</th>
+    <th>最大长度</th>
+    <th width="220">描述</th>
+    <th width="163">示例值</th>
+</tr>
+<tr>
+    <td>error_code</td>
+    <td>int</td>
+    <td>是</td>
+    <td></td>
+    <td>详见错误列表</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>error_msg</td>
+    <td>String</td>
+    <td>否</td>
+    <td>128</td>
+    <td>结果不明确，不处理单据，状态=Unknow</td>
+    <td>ok</td>
+</tr>
+</table>
+
+- 响应参数
+
+以下字段在return_code为SUCCESS时，result_code为SUCCESS时返回
+
 
 <table data-hy-role="doctbl"> 
     <th>参数</th>
@@ -626,75 +798,67 @@
 	<th>示例值</th>
 </tr>
 <tr>
-    <td>hash</td>
+    <td>hy_bill_no</td>
     <td>String</td>
 	<td>是</td>
-	<td>64</td>
-	<td>交易hash</td>
-	<td>5649d0e06baa10bb195b5e</td>
+	<td>50</td>
+	<td>汇元订单号</td>
+	<td>1004</td>
 </tr>
 <tr>
     <td>out_bill_no</td>
     <td>String</td>
 	<td>是</td>
-	<td>128</td>
-	<td>外部流水号</td>
+	<td>50</td>
+	<td>商户订单号</td>
 	<td>T201821521512</td>
 </tr>
 <tr>
-    <td>agreement_no</td>
+    <td>tx_id</td>
     <td>String</td>
 	<td>是</td>
 	<td>50</td>
-	<td>合同编号</td>
-	<td>G2018022812A231</td>
+	<td>交易hash</td>
+	<td>4e716a....29cf37</td>
 </tr>
 <tr>
-    <td>operate_type</td>
+    <td>data_key</td>
     <td>String</td>
 	<td>是</td>
 	<td>20</td>
-	<td>操作类型</td>
-	<td>0=123</td>
+	<td>存证编号</td>
+	<td>10001</td>
 </tr>
 <tr>
-    <td>evidence_address</td>
+    <td>data_type</td>
     <td>String</td>
 	<td>是</td>
 	<td>64</td>
-	<td>存证地址</td>
-	<td>da4yWWszCaBy7pfhoQpu7HTXuaQQ9xS</td>
-</tr>
-<tr>
-    <td>status</td>
-    <td>int</td>
-	<td>是</td>
-	<td>1</td>
-	<td>执行状态</td>
-	<td>0=处理中，1=成功，-1=失败</td>
-</tr>
-<tr>
-    <td>message</td>
-    <td>String</td>
-	<td>是</td>
-	<td>50</td>
-	<td>描述</td>
-	<td>test</td>
+	<td>存证类型，原样返回</td>
+	<td>签约、存证</td>
 </tr>
 <tr>
     <td>data</td>
-    <td>String</td>
+    <td>int</td>
 	<td>是</td>
-	<td>500</td>
-	<td>其他数据，json串 原样返回</td>
-	<td>0={json串}</td>
+	<td>1</td>
+	<td>存证内容，合同MD5摘要结果</td>
+	<td>864D4DE15097B3A2D0508A0D5CC724F4</td>
 </tr>
 <tr>
-    <td>ctime</td>
+    <td>trade_status</td>
+    <td>String</td>
+	<td>是</td>
+	<td>50</td>
+	<td>存证状态，Undeal=未处理，InPack=打包中，PartConfirm=部分确认，Success=已完成，Fail=失败</td>
+	<td>Success</td>
+</tr>
+<tr>
+    <td>address</td>
     <td>String</td>
 	<td>是</td>
 	<td>500</td>
-	<td>链上操作完成创建时间</td>
-	<td>yyyyMMddHHmmss	</td>
+	<td>存证地址</td>
+	<td>hy1e5EhWc4xqMHRqZCufhZu5MsjYfvBdTtv</td>
 </tr>
 </table>
