@@ -46,7 +46,7 @@
 
 例如：
 ```
-APP_KEY：EA9DA4530C454D009D0E1291
+APP_KEY：5498C4A5CCC54206A1F0BFVR
 ```
 
 请求参数（除sign外）：
@@ -54,24 +54,25 @@ APP_KEY：EA9DA4530C454D009D0E1291
 {
     "method":"heechain.sign.add",
     "version":"1.0",
-    "app_id":"hyp17041910025000000101470B1F3AC",
+    "app_id":"hyp1710121002500000027081FEFBBA4",
     "mch_uid":"1002501974599",
     "charset":"utf-8",
     "sign_type":"MD5",
-    "timestamp":"20191023172932",
-    "biz_content":"{\"out_trade_no\":\"624425AE8DEE4F7D9FB52FFED38A8F47\",\"notify_url\":\"http://192.168.2.95/TestMergepay/Api/RecNotifyUrl.aspx\"}","sign":"9b89683a9d3f6366ab46fb267aab5117"
+    "timestamp":"20191021170832",
+    "biz_content={"data_type":"存证","out_trade_no":"73220C42A75348EB98D573E96C352EF4","data_key":"10001","data":"864D4DE15097B3A2D0508A0D5CC724F4","note":"创建合同"}",
+    "sign":"e9774123a03acfa7e6c0dfe5e91d12f4"
 }
 ```
 
 根据规则应生成MD5签名串：
 ```text
-app_id=hyp1710121002500000027081FEFBBA4&biz_content={"fabric_chain_type":"1","member_type":"0","out_trade_no":"73220C42A75348EB98D573E96C352EF4","account_id":"250","login_account":"15022002200","account_name":"15022002200"}&charset=utf-8&mch_uid=1002501974599&method=heechain.account.register&sign_type=MD5&timestamp=20191021170832&version=1.0&key=5498C4A5CCC54206A1F0FB0E
+app_id=hyp1710121002500000027081FEFBBA4&biz_content={"data_type":"存证","out_trade_no":"73220C42A75348EB98D573E96C352EF4","data_key":"10001","data":"864D4DE15097B3A2D0508A0D5CC724F4","note":"创建合同"}&charset=utf-8&mch_uid=1002501974599&method=heechain.account.register&sign_type=MD5&timestamp=20191021170832&version=1.0&key=5498C4A5CCC54206A1F0BFVR
 ```
 
 MD5签名转大写后：
 
 ```javascript
 {
-    "sign":"9b89683a9d3f6366ab46fb267aab5117"
+    "sign":"e9774123a03acfa7e6c0dfe5e91d12f4"
 }
 ```
