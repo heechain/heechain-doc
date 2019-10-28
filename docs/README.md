@@ -46,7 +46,7 @@
 
 例如：
 ```
-APP_KEY：5498C4A5CCC54206A1F0FB0E
+APP_KEY：5498C4A5CCC54206A1F0BFVR
 ```
 
 请求参数（除sign外）：
@@ -60,19 +60,19 @@ APP_KEY：5498C4A5CCC54206A1F0FB0E
     "sign_type":"MD5",
     "timestamp":"20191021170832",
     "biz_content={"data_type":"存证","out_trade_no":"73220C42A75348EB98D573E96C352EF4","data_key":"10001","data":"864D4DE15097B3A2D0508A0D5CC724F4","note":"创建合同"}",
-    "sign":"390e72a639b5f03c343bd986a0ad3140"
+    "sign":"e9774123a03acfa7e6c0dfe5e91d12f4"
 }
 ```
 
 根据规则应生成MD5签名串：
 ```text
-app_id=hyp1710121002500000027081FEFBBA4&biz_content={"data_type":"存证","out_trade_no":"73220C42A75348EB98D573E96C352EF4","data_key":"10001","data":"864D4DE15097B3A2D0508A0D5CC724F4","note":"创建合同"}&charset=utf-8&mch_uid=1002501974599&method=heechain.account.register&sign_type=MD5&timestamp=20191021170832&version=1.0&key=5498C4A5CCC54206A1F0FB0E
+app_id=hyp1710121002500000027081FEFBBA4&biz_content={"data_type":"存证","out_trade_no":"73220C42A75348EB98D573E96C352EF4","data_key":"10001","data":"864D4DE15097B3A2D0508A0D5CC724F4","note":"创建合同"}&charset=utf-8&mch_uid=1002501974599&method=heechain.account.register&sign_type=MD5&timestamp=20191021170832&version=1.0&key=5498C4A5CCC54206A1F0BFVR
 ```
 
 MD5签名转大写后：
 
 ```javascript
 {
-    "sign":"390e72a639b5f03c343bd986a0ad3140"
+    "sign":"e9774123a03acfa7e6c0dfe5e91d12f4"
 }
 ```
