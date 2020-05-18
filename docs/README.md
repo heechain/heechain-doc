@@ -23,7 +23,7 @@
     </tr>
     <tr>
         <td>签名算法</td>
-        <td>MD5，后续会兼容SHA1、SHA256、HMAC等。</td>
+        <td>MD5</td>
     </tr>
     <tr>
         <td>签名要求</td>
@@ -37,42 +37,35 @@
 
 ## 签名规则
 
-1. 把字典按Key的字母顺序排序；
-- 把所有参数名和参数值串在一起；
-- 在第二步生成的参数串后加入KEY;
-- 讲第三步得到的参数串进行MD5加密；
-- 将MD5串转大写。
+1. 把参数按Key的ASCII顺序由小到大进行排序,并以key=value&方式进行拼接；
+- 在步骤一生成的参数串后加入MD5签名KEY,并进行MD5摘要;
+- 将MD5摘要后的串转大写。
 
 
 例如：
-```
-APP_KEY：5498C4A5CCC54206A1F0BFVR
-```
-
-请求参数（除sign外）：
-```javascript
-{
-    "method":"heechain.sign.add",
-    "version":"1.0",
-    "app_id":"hyp1710121002500000027081FEFBBA4",
-    "mch_uid":"1002501974599",
-    "charset":"utf-8",
-    "sign_type":"MD5",
-    "timestamp":"20191021170832",
-    "biz_content={"data_type":"存证","out_trade_no":"73220C42A75348EB98D573E96C352EF4","data_key":"10001","data":"864D4DE15097B3A2D0508A0D5CC724F4","note":"创建合同"}",
-    "sign":"e9774123a03acfa7e6c0dfe5e91d12f4"
-}
-```
 
 根据规则应生成MD5签名串：
 ```text
-app_id=hyp1710121002500000027081FEFBBA4&biz_content={"data_type":"存证","out_trade_no":"73220C42A75348EB98D573E96C352EF4","data_key":"10001","data":"864D4DE15097B3A2D0508A0D5CC724F4","note":"创建合同"}&charset=utf-8&mch_uid=1002501974599&method=heechain.account.register&sign_type=MD5&timestamp=20191021170832&version=1.0&key=5498C4A5CCC54206A1F0BFVR
+app_id=hyp17041910025000000101470B1F3AC&biz_content={"data_key":"test_2020515004","data_content":"testerewr345sdfsdfdgfgfgfffe","notify_url":"http://localhost/TestMergepay/Api/RecNotifyUrl.aspx"}&charset=utf-8&mch_uid=1002501974599&method=heechain.deposit.add&sign_type=MD5&timestamp=20200515092008&version=1.0&key=099E0DB65F1F4EAFA0EBA529
 ```
 
 MD5签名转大写后：
 
 ```javascript
+"sign":"1CF6638552C314A51D4A520C3453B6D9"
+```
+
+请求参数:
+```javascript
 {
-    "sign":"e9774123a03acfa7e6c0dfe5e91d12f4"
+    "method":"heechain.deposit.add",
+    "version":"1.0",
+    "app_id":"hyp17041910025000000101470B1F3AC",
+    "mch_uid":"1002501974599",
+    "charset":"utf-8",
+    "sign_type":"MD5",
+    "timestamp":"20200515092008",
+    "biz_content"="{\"data_key\":\"test_2020515004\",\"data_content\":\"e9774123a03acfa7e6c0dfe5e91d12f4\",\"notify_url\":\"http://localhost/TestMergepay/Api/RecNotifyUrl.aspx\"}",
+    "sign":"1CF6638552C314A51D4A520C3453B6D9"
 }
 ```

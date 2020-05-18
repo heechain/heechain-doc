@@ -1,14 +1,11 @@
-## 区块存证接口
+## 存证
 
-- 简要描述：
 
-区块存证接口，为合同管理提供非中心化的数据存储与读取，保证数据的绝对安全，不可抵赖。
-
-> 请求URL:`https://api.heemoney.com/heechain/v1/signadd`
+> 请求URL:`https://api.heemoney.com/heechain/v1/depositadd`
 
 > 请求方式:`POST`   
 
-> method：`heechain.sign.add`
+> method：`heechain.deposit.add`
 
 > 数据格式：`json串`
 
@@ -53,7 +50,7 @@
 	<td>是</td>
 	<td>128</td>
 	<td>业务名称</td>
-	<td>heechain.sign.add</td>
+	<td>heechain.deposit.add</td>
 </tr>
 <tr>
     <td>charset</td>
@@ -108,44 +105,28 @@
 	<th>示例值</th>
 </tr>
 <tr>
-    <td>out_trade_no</td>
+    <td>data_content</td>
     <td>String</td>
 	<td>是</td>
-	<td>20</td>
-	<td>商户订单号</td>
-	<td>T201821521512</td>
-</tr>
-<tr>
-    <td>data_type</td>
-    <td>String</td>
-	<td>是</td>
-	<td>20</td>
-	<td>存证类型，自定义参数</td>
-	<td>签约、存证</td>
+	<td>1000</td>
+	<td>存证内容,建议将原始数据摘要后作为存证内容</td>
+	<td>864D4DE15097B3A2D0508A0D5CC724F4</td>
 </tr>
 <tr>
     <td>data_key</td>
     <td>String</td>
 	<td>是</td>
-	<td>50</td>
-	<td>存证编号，自定义参数</td>
+	<td>60</td>
+	<td>本次存证唯一标识，可以为商户业务系统订单号</td>
 	<td>10001</td>
 </tr>
 <tr>
-    <td>data</td>
+    <td>notify_url</td>
     <td>String</td>
 	<td>是</td>
 	<td>-</td>
-	<td>存证内容，合同MD5摘要结果</td>
-	<td>864D4DE15097B3A2D0508A0D5CC724F4</td>
-</tr>
-<tr>
-    <td>note</td>
-    <td>String</td>
-	<td>否</td>
-	<td>255</td>
-	<td>备注</td>
-	<td>创建合同</td>
+	<td>异步通知地址,由商户侧指定</td>
+	<td></td>
 </tr>
 </table>
 
@@ -258,28 +239,28 @@
 	<td>1007</td>
 </tr>
 <tr>
-    <td>out_trade_no</td>
+    <td>data_key</td>
     <td>String</td>
 	<td>是</td>
-	<td>128</td>
-	<td>商户订单号</td>
-	<td>T201821521512</td>
+	<td>60</td>
+	<td>本次存证唯一标识，可以为商户业务系统订单号</td>
+	<td>10001</td>
 </tr>
 <tr>
     <td>tx_id</td>
     <td>String</td>
 	<td>是</td>
-	<td>20</td>
+	<td>100</td>
 	<td>交易hash</td>
 	<td>3944c64372c2c4</td>
 </tr>
 <tr>
-    <td>address</td>
+    <td>data_content</td>
     <td>String</td>
 	<td>是</td>
-	<td>50</td>
-	<td>存证账户地址</td>
-	<td>hy13JuhgwZS</td>
+	<td>1000</td>
+	<td>存证内容,建议将原始数据摘要后作为存证内容</td>
+	<td>864D4DE15097B3A2D0508A0D5CC724F4</td>
 </tr>
 <tr>
     <td>trade_status</td>
@@ -296,13 +277,13 @@
 
 - 简要描述：
 
-区块存证接口查询，根据商户订单号、汇元单号，查询区块链上的信息。
+区块存证接口查询，可根据data_key、汇元单号，查询区块链上的信息。
 
-> 请求URL:`https://api.heemoney.com/heechain/v1/signquery`
+> 请求URL:`https://api.heemoney.com/heechain/v1/depositquery `
 
 > 请求方式:`POST`   
 
-> method：`heechain.sign.query`
+> method：`heechain.deposit.query`
 
 > 数据格式：`json串`
 
@@ -322,7 +303,7 @@
 	<td>是</td>
 	<td>128</td>
 	<td>业务名称</td>
-	<td>heechain.sign.query</td>
+	<td>heechain.deposit.query</td>
 </tr>
 <tr>
     <td>version</td>
@@ -401,14 +382,14 @@
 	<th>示例值</th>
 </tr>
 <tr>
-    <td>out_trade_no</td>
+    <td>data_key</td>
     <td>String</td>
 	<td>否</td>
-	<td>20</td>
+	<td>60</td>
 	<td>商户订单号</td>
 	<td>T201821521512</td>
 </tr>
-<tr>
+<tr></tr>
     <td>hy_bill_no</td>
     <td>String</td>
 	<td>否</td>
@@ -417,7 +398,7 @@
 	<td>G2018022812A231</td>
 </tr>
 </table>
-汇元单号或商户订单号必须提供一个，以汇元单号优先
+汇元单号或data_key必须提供一个，以汇元单号优先
 
 
 - 公共响应参数
@@ -529,14 +510,6 @@
 	<td>1004</td>
 </tr>
 <tr>
-    <td>out_bill_no</td>
-    <td>String</td>
-	<td>是</td>
-	<td>50</td>
-	<td>商户订单号</td>
-	<td>T201821521512</td>
-</tr>
-<tr>
     <td>tx_id</td>
     <td>String</td>
 	<td>是</td>
@@ -545,29 +518,22 @@
 	<td>4e716a....29cf37</td>
 </tr>
 <tr>
+    <td>data_content</td>
+    <td>String</td>
+	<td>是</td>
+	<td>1000</td>
+	<td>存证内容,建议将原始数据摘要后作为存证内容</td>
+	<td>864D4DE15097B3A2D0508A0D5CC724F4</td>
+</tr>
+<tr>
     <td>data_key</td>
     <td>String</td>
 	<td>是</td>
-	<td>20</td>
-	<td>存证编号</td>
+	<td>60</td>
+	<td>本次存证唯一标识，可以为商户业务系统订单号</td>
 	<td>10001</td>
 </tr>
-<tr>
-    <td>data_type</td>
-    <td>String</td>
-	<td>是</td>
-	<td>64</td>
-	<td>存证类型，原样返回</td>
-	<td>签约、存证</td>
-</tr>
-<tr>
-    <td>data</td>
-    <td>int</td>
-	<td>是</td>
-	<td>1</td>
-	<td>存证内容，合同MD5摘要结果</td>
-	<td>864D4DE15097B3A2D0508A0D5CC724F4</td>
-</tr>
+
 <tr>
     <td>trade_status</td>
     <td>String</td>
@@ -575,14 +541,6 @@
 	<td>50</td>
 	<td>存证状态，Undeal=未处理，InPack=打包中，PartConfirm=部分确认，Success=已完成，Fail=失败</td>
 	<td>Success</td>
-</tr>
-<tr>
-    <td>address</td>
-    <td>String</td>
-	<td>是</td>
-	<td>500</td>
-	<td>存证地址</td>
-	<td>hy1e5EhWc4xqMHRqZCufhZu5MsjYfvBdTtv</td>
 </tr>
 </table>
 
@@ -593,11 +551,11 @@
 
 区块存证接口查询，根据交易ID（存证提交时，返回的txt_id）查询区块链上的信息。
 
-> 请求URL:`https://api.heemoney.com/heechain/v1/signquerybytxid`
+> 请求URL:`https://api.heemoney.com/heechain/v1/depositquerytxhash`
 
 > 请求方式:`POST`  
 
-> method：`heechain.sign.query.txid`
+> method：`heechain.deposit.query.txhash`
 
 > 数据格式：`json串`
 
@@ -625,7 +583,7 @@
 	<td>是</td>
 	<td>128</td>
 	<td>业务名称</td>
-	<td>heechain.sign.query.txid</td>
+	<td>heechain.deposit.query.txhash</td>
 </tr>
 <tr>
     <td>app_id</td>
@@ -688,12 +646,12 @@
 	<th>示例值</th>
 </tr>
 <tr>
-    <td>tx_id</td>
+    <td>tx_hash</td>
     <td>String</td>
 	<td>是</td>
 	<td>64</td>
 	<td>区块交易hash</td>
-	<td>da4yWWszCaBy7pfhoQpu7HTXuaQQ9xS</td>
+	<td>02450f3da7b7877463041badeea459785b373d86db78ec03616cb344c63e5f60</td>
 </tr>
 </table>
 
@@ -806,15 +764,7 @@
 	<td>1004</td>
 </tr>
 <tr>
-    <td>out_bill_no</td>
-    <td>String</td>
-	<td>是</td>
-	<td>50</td>
-	<td>商户订单号</td>
-	<td>T201821521512</td>
-</tr>
-<tr>
-    <td>tx_id</td>
+    <td>tx_hash</td>
     <td>String</td>
 	<td>是</td>
 	<td>50</td>
@@ -822,28 +772,20 @@
 	<td>4e716a....29cf37</td>
 </tr>
 <tr>
+    <td>data_content</td>
+    <td>String</td>
+	<td>是</td>
+	<td>1000</td>
+	<td>存证内容,建议将原始数据摘要后作为存证内容</td>
+	<td>864D4DE15097B3A2D0508A0D5CC724F4</td>
+</tr>
+<tr>
     <td>data_key</td>
     <td>String</td>
 	<td>是</td>
-	<td>20</td>
-	<td>存证编号</td>
+	<td>60</td>
+	<td>本次存证唯一标识，可以为商户业务系统订单号</td>
 	<td>10001</td>
-</tr>
-<tr>
-    <td>data_type</td>
-    <td>String</td>
-	<td>是</td>
-	<td>64</td>
-	<td>存证类型，原样返回</td>
-	<td>签约、存证</td>
-</tr>
-<tr>
-    <td>data</td>
-    <td>int</td>
-	<td>是</td>
-	<td>1</td>
-	<td>存证内容，合同MD5摘要结果</td>
-	<td>864D4DE15097B3A2D0508A0D5CC724F4</td>
 </tr>
 <tr>
     <td>trade_status</td>
@@ -852,13 +794,5 @@
 	<td>50</td>
 	<td>存证状态，Undeal=未处理，InPack=打包中，PartConfirm=部分确认，Success=已完成，Fail=失败</td>
 	<td>Success</td>
-</tr>
-<tr>
-    <td>address</td>
-    <td>String</td>
-	<td>是</td>
-	<td>500</td>
-	<td>存证地址</td>
-	<td>hy1e5EhWc4xqMHRqZCufhZu5MsjYfvBdTtv</td>
 </tr>
 </table>
